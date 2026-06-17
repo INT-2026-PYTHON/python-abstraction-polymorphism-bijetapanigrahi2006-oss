@@ -81,3 +81,37 @@ Explanation:
 =================================================
 
 """
+class Animal:
+
+    def _init_(self, name: str):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+
+# 2. Define three child classes:
+class Dog(Animal):
+
+    def speak(self):
+        print(f"{self.name} says Woof")
+
+
+class Cat(Animal):
+
+    def speak(self):
+        print(f"{self.name} says Meow")
+
+
+class Cow(Animal):
+
+    def speak(self):
+        print(f"{self.name} says Moo")
+
+_name_ = ""
+if _name_ == "_main_":
+
+    animals = [Dog("Buddy"), Cat("Whiskers"), Cow("Bessie")]
+
+    for animal in animals:
+        animal.speak()
