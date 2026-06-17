@@ -99,3 +99,75 @@ Explanation:
 =================================================
 
 """
+
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+
+    def _init_(self, name: str):
+        self.name = name
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
+
+    def _init_(self, radius: float):
+        super()._init_("Circle")
+        self.radius = radius
+
+    def area(self) -> float:
+        return 3.14159 * self.radius * self.radius
+
+    def perimeter(self) -> float:
+        return 2 * 3.14159 * self.radius
+
+
+class Rectangle(Shape):
+
+    def _init_(self, length: float, width: float):
+        super()._init_("Rectangle")
+        self.length = length
+        self.width = width
+
+    def area(self) -> float:
+        return self.length * self.width
+
+    def perimeter(self) -> float:
+        return 2 * (self.length + self.width)
+
+
+class Triangle(Shape):
+
+    def _init_(self, a: float, b: float, c: float):
+        super()._init_("Triangle")
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def perimeter(self) -> float:
+        return self.a + self.b + self.c
+
+    def area(self) -> float:
+        s = self.perimeter() / 2
+        return (s * (s - self.a) * (s - self.b) * (s - self.c)) ** 0.5
+
+_name_ = " "
+if _name_ == "_main_":
+    try:
+        s_test = Shape("nope")
+    except TypeError as e:
+        print("Cannot create Shape directly:")
+        print(f"TypeError: {e}")
+
+    shapes = [Circle(5), Rectangle(4, 6), Triangle(3, 4, 5)]
+
+    for shape in shapes:
+        print(
+            f"{shape.name:<9} -> area={shape.area():<10}, perimeter={shape.perimeter()}"
+        )
